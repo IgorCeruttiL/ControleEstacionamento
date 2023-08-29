@@ -1,0 +1,81 @@
+﻿@page "/registros"
+@inject HttpClient Http
+@using Estacionamento.Models
+@using Newtonsoft.Json
+@using System.Net.Http.Json
+
+<PageTitle>Registros</PageTitle>
+
+<h1>Registros de Saída</h1>
+
+<div>
+    <label>Data:</label>
+    <input type="date" @bind="dataSelecionada" />
+    <button @onclick="CarregarRegistros">Carregar Registros</button>
+</div>
+
+@if (registros != null && registros.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Placa</th>
+                <th>Horas Estacionado</th>
+                <th>Valor Pago</th>
+                <th>Hora de Saída</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var registro in registros)
+            {
+                <tr>
+                    <td>@registro.Id</td>
+                    <td>@registro.Placa</td>
+                    <td>@registro.HorasEstacionado</td>
+                    <td>@registro.ValorPago</td>
+                    <td>@registro.HoraSaida</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nenhum registro encontrado para a data selecionada.</p>
+}
+
+@code {
+    private List<RegistroSaida> registros;
+    private DateTime dataSelecionada = DateTime.Now.Date;
+
+    private async Task CarregarRegistros()
+    {
+        try
+        {
+            var response = await Http.GetAsync($"v1/registro/{dataSelecionada:yyyy-MM-dd}");
+            response.EnsureSuccessStatusCode(); // Lança exceção se a resposta for de erro
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Resposta da API: {content}");
+
+            registros = JsonConvert.DeserializeObject<ApiResponse>(content).Registros;
+        }
+        catch (HttpRequestException ex)
+        {
+            // Lida com erros de requisição HTTP
+            Console.WriteLine($"Erro na requisição HTTP: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            // Lida com outros erros
+            Console.WriteLine($"Erro: {ex.Message}");
+        }
+    }
+
+    public class ApiResponse
+    {
+        public DateTime Data { get; set; }
+        public decimal ValorTotalDia { get; set; }
+        public List<RegistroSaida> Registros { get; set; }
+    }
+}

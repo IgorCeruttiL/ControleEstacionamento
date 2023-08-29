@@ -1,0 +1,96 @@
+﻿@page "/"
+@inject HttpClient Http
+@using System.Net.Http;
+@using System.Text.Json;
+@using System.Text;
+
+<PageTitle>Index</PageTitle>
+
+<h1>Estacionamento Cerutti</h1>
+<p>Bem-vindo(a)</p>
+
+<h3>Registro de Entrada</h3>
+<div class="row">
+    <div class="col-sm-2">
+        <label class="col-form-label">Placa:</label>
+    </div>
+    <div class="col-sm-4">
+        <input class="form-control form-control-sm" @bind="placa" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2">
+        <label class="col-form-label">Cor:</label>
+    </div>
+    <div class="col-sm-4">
+        <input class="form-control form-control-sm" @bind="cor" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2">
+        <label class="col-form-label">Modelo:</label>
+    </div>
+    <div class="col-sm-4">
+        <input class="form-control form-control-sm" @bind="modelo" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+        <button class="btn btn-primary btn-sm" @onclick="RegistrarEntrada">Registrar Entrada</button>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(mensagemRegistroEntrada))
+{
+    <p>@mensagemRegistroEntrada</p>
+}
+
+@code {
+    private string placa = string.Empty;
+    private string cor = string.Empty;
+    private string modelo = string.Empty;
+    private string mensagemRegistroEntrada;
+
+    private async Task RegistrarEntrada()
+    {
+        try
+        {
+            var data = new
+            {
+                Placa = placa,
+                Cor = cor,
+                Modelo = modelo
+            };
+
+            var json = JsonSerializer.Serialize(data);
+            Console.WriteLine("JSON enviado: " + json);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await Http.PostAsync("v1/entrada", content);
+
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Resposta da API: " + responseContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                mensagemRegistroEntrada = "Entrada registrada com sucesso!";
+                placa = string.Empty;   // Limpar campos
+                cor = string.Empty;     // Limpar campos
+                modelo = string.Empty;  // Limpar campos
+            }
+            else
+            {
+                mensagemRegistroEntrada = "Erro ao registrar entrada.";
+            }
+        }
+        catch (Exception ex)
+        {
+            mensagemRegistroEntrada = "Erro: " + ex.Message;
+            Console.WriteLine(ex.StackTrace);
+        }
+    }
+}

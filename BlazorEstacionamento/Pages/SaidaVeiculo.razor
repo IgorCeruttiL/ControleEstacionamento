@@ -1,0 +1,47 @@
+﻿@page "/saidaveiculo"
+@inject HttpClient Http
+@using System.Net.Http;
+@using System.Text.Json;
+@using System.Text;
+
+<PageTitle>Saída de Veículo</PageTitle>
+
+<h3>Registro de Saída de Veículo</h3>
+<div>
+    <label>Placa:</label>
+    <input @bind="placaSaida" />
+</div>
+<div>
+    <button @onclick="RegistrarSaida">Registrar Saída</button>
+</div>
+
+@if (!string.IsNullOrEmpty(mensagemRegistroSaida))
+{
+    <p>@mensagemRegistroSaida</p>
+}
+
+@code {
+    private string placaSaida;
+    private string mensagemRegistroSaida;
+
+    private async Task RegistrarSaida()
+    {
+        try
+        {
+            var response = await Http.PostAsync($"v1/saida/{placaSaida}", null);
+
+            if (response.IsSuccessStatusCode)
+            {
+                mensagemRegistroSaida = "Saída registrada com sucesso!";
+            }
+            else
+            {
+                mensagemRegistroSaida = "Erro ao registrar saída.";
+            }
+        }
+        catch (Exception ex)
+        {
+            mensagemRegistroSaida = "Erro: " + ex.Message;
+        }
+    }
+}
