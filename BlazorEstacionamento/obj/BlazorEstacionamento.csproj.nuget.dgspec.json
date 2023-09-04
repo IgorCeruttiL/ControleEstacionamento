@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\BlazorEstacionamento\\BlazorEstacionamento.csproj": {}
+    "C:\\Dev\\ControleEstacionamento\\BlazorEstacionamento\\BlazorEstacionamento.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\BlazorEstacionamento\\BlazorEstacionamento.csproj": {
+    "C:\\Dev\\ControleEstacionamento\\BlazorEstacionamento\\BlazorEstacionamento.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\BlazorEstacionamento\\BlazorEstacionamento.csproj",
+        "projectUniqueName": "C:\\Dev\\ControleEstacionamento\\BlazorEstacionamento\\BlazorEstacionamento.csproj",
         "projectName": "BlazorEstacionamento",
-        "projectPath": "C:\\Dev\\BlazorEstacionamento\\BlazorEstacionamento.csproj",
+        "projectPath": "C:\\Dev\\ControleEstacionamento\\BlazorEstacionamento\\BlazorEstacionamento.csproj",
         "packagesPath": "C:\\Users\\igor\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\BlazorEstacionamento\\obj\\",
+        "outputPath": "C:\\Dev\\ControleEstacionamento\\BlazorEstacionamento\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Dev\\Estacionamento\\Estacionamento.csproj": {
-                "projectPath": "C:\\Dev\\Estacionamento\\Estacionamento.csproj"
+              "C:\\Dev\\ControleEstacionamento\\Estacionamento\\Estacionamento.csproj": {
+                "projectPath": "C:\\Dev\\ControleEstacionamento\\Estacionamento\\Estacionamento.csproj"
               }
             }
           }
@@ -57,86 +57,6 @@
             "FontAwesome": {
               "target": "Package",
               "version": "[4.7.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Dev\\Estacionamento\\Estacionamento.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Dev\\Estacionamento\\Estacionamento.csproj",
-        "projectName": "Estacionamento",
-        "projectPath": "C:\\Dev\\Estacionamento\\Estacionamento.csproj",
-        "packagesPath": "C:\\Users\\igor\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Estacionamento\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\igor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[7.0.10, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
